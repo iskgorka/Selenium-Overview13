@@ -17,13 +17,12 @@ public class FirstClass {
         WebElement searchElement = driver.findElement(By.xpath(searchFieldXpath));
         searchElement.sendKeys("automation");
         System.out.println("Search field is displayed " + searchElement.isDisplayed());
+        Thread.sleep(2000);
         searchElement.submit();
-        Thread.sleep(10000);
 
         WebElement searchResults = driver.findElement(By.id("rso"));
         String firstResultTitle = searchResults.findElement(By.xpath("//a/h3")).getText();
         System.out.println("First result title is " + firstResultTitle);
-
         List<WebElement> allResultTitles = searchResults.findElements(By.xpath("//a/h3"));
         List<WebElement> allMenus = driver.findElements(By.className("hdtb-mitem"));
         Thread.sleep(2000);
@@ -31,7 +30,7 @@ public class FirstClass {
         System.out.println("Current title is " + driver.getTitle());
         for(WebElement v : allMenus){
             System.out.println("Menu title:");
-            System.out.println(v.getText());
+            System.out.print(v.getText());
         }
         allResultTitles.get(0).click();
         System.out.println("Current URL after click is " + driver.getCurrentUrl());
