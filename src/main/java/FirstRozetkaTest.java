@@ -29,10 +29,35 @@ public class FirstRozetkaTest {
             searchRozetkaField.sendKeys("apple watch 8");
             searchRozetkaField.submit();
             //searchGreenButton.click();
-            Thread.sleep(1000);
+            Thread.sleep(2000);
             List<WebElement> suggestList = driver.findElements(By.xpath("//li[@class='search-suggest__item ng-star-inserted']"));
             suggestList.get(0).click();
-            
+
+            Thread.sleep(2000);
+            WebElement searchResultTitle = driver.findElement(By.xpath("//h2[@class='search-heading ng-star-inserted']"));
+            searchResultTitle.isDisplayed();
+            System.out.println(searchResultTitle.getText());
+            System.out.println("Current URL is: " + driver.getCurrentUrl());
+
+            List<WebElement> searchResultList = driver.findElements(By.xpath("//div[@class='goods-tile__inner']"));
+            searchResultList.get(0).click();
+
+            Thread.sleep(2000);
+            String fullSearchGoodsText = driver.findElement(By.xpath("//h1[@class='product__title-left product__title-collapsed ng-star-inserted']")).getText();
+            //System.out.println("Full description of the product: " + fullSearchGoodsText);
+            System.out.println(driver.getTitle());
+
+            List<WebElement> allGoodsMenus = driver.findElements(By.xpath("//li[@class='tabs__item ng-star-inserted']"));
+            allGoodsMenus.get(1).click();
+
+            Thread.sleep(2000);
+            WebElement buyButton = driver.findElement(By.xpath("//rz-product-buy-btn[@class='product-carriage__buy-button ng-star-inserted']"));
+            buyButton.isEnabled();
+            System.out.println(buyButton.getText());
+            buyButton.click();
+            Thread.sleep(2000);
+            System.out.println(fullSearchGoodsText + " " + buyButton.getText());
+
         } finally {
             driver.close();
         }
